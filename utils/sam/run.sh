@@ -107,8 +107,11 @@ main() {
 			aws s3 rm s3://$BUCKET_NAME/layer.zip --region $region
 			aws s3 rb s3://$BUCKET_NAME --region $region
 			rm layer.zip
+			cd ../../..
 		fi
+		echo $(pwd)
 		rm -rf otel/otel_collector
+		rm -rf .aws-sam
 	fi
 
 	if [[ $layer == true ]]; then
