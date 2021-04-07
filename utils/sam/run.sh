@@ -109,7 +109,6 @@ main() {
 			rm layer.zip
 			cd ../../..
 		fi
-		echo $(pwd)
 		rm -rf otel/otel_collector
 		rm -rf .aws-sam
 	fi
