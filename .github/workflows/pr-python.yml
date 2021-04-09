@@ -1,4 +1,4 @@
-name: "PR Python"
+name: "Pull Request (Python)"
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - 'python/**'
     branches:
       - main
+      - master
 
 jobs:
   py38:
