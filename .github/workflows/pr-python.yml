@@ -27,7 +27,7 @@ jobs:
       - name: Install Tox and any other packages
         run: pip install tox
 
-      - name: Run tox
+      - name: Tox
         working-directory: python/src
         run: tox
 
@@ -35,7 +35,4 @@ jobs:
         env:
           AWS_REGION: us-east-1
         working-directory: python/src
-        run: |
-          pwd
-          ls -l
-          ./run.sh -b
+        run: ./run.sh -b
