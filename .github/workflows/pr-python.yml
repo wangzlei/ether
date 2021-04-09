@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  py38:
+  PR-Python:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,4 +33,7 @@ jobs:
 
       - name: SAM build
         working-directory: python/src
-        run: ./run.sh -b
+        run: |
+          pwd
+          ls -l
+          ./run.sh -b
