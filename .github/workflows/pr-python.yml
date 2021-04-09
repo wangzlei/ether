@@ -32,6 +32,8 @@ jobs:
         run: tox
 
       - name: SAM build
+        env:
+          AWS_REGION: us-east-1
         working-directory: python/src
         run: |
           pwd
