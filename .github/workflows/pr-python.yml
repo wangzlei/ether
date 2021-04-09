@@ -37,7 +37,5 @@ jobs:
         run: ./run.sh -b
 
       - name: SAM build sample
-          env:
-            AWS_REGION: us-east-1
-          working-directory: python/sample-apps
-          run: ./run.sh -b
+        working-directory: python/sample-apps
+        run: ./run.sh -b
