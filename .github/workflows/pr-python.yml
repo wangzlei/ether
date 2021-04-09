@@ -2,8 +2,8 @@ name: "Pull Request (Python)"
 
 on:
   push:
-    paths:
-      - 'python/**'
+#    paths:
+#      - 'python/**'
     branches:
       - main
       - master
@@ -12,14 +12,9 @@ jobs:
   py38:
     runs-on: ubuntu-latest
 
-    env:
-      AWS_REGION: ${{matrix.region}}
-      WORK_DIR: "python/src"
-
     strategy:
       matrix:
         python: [3.8]
-        region: [us-west-1]
 
     steps:
       - uses: actions/checkout@v2
@@ -33,19 +28,9 @@ jobs:
         run: pip install tox
 
       - name: Run tox
-        run: |
-          echo tox...
-          cd sample-apps/python-lambda && tox
+        working-directory: python/src
+        run: tox
 
-      - name: init
-        run: |
-          echo $AWS_REGION
-          cd $WORK_DIR
-          chmod -R +x tools
-          cp tools/* .
-
-      - name: build
-        run: |
-          cd $WORK_DIR
-          chmod +x run.sh
-          ./run.sh -b
+      - name: SAM build
+        working-directory: python/src
+        run: ./run.sh -b
