@@ -1,3 +1,17 @@
+// Copyright The OpenTelemetry Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package main
 
 import (
@@ -52,7 +66,7 @@ func NewInProcessCollector(factories component.Factories) *InProcessCollector {
 
 func envLoaderConfigFactory(v *viper.Viper, factories component.Factories) (*configmodels.Config, error) {
 	if configContent, ok := os.LookupEnv("OPENTELEMETRY_COLLECTOR_CONFIG_CONTENT"); ok {
-		println("Reading config from environment: ", configContent)
+		logln("Reading config from environment: ", configContent)
 		configContent = strings.Replace(configContent, "\\n", "\n", -1)
 		var configBytes = []byte(configContent)
 		err := v.ReadConfig(bytes.NewBuffer(configBytes))
@@ -62,7 +76,7 @@ func envLoaderConfigFactory(v *viper.Viper, factories component.Factories) (*con
 		return config.Load(v, factories)
 	}
 
-	println("Reading config from file: ", configFile)
+	logln("Reading config from file: ", configFile)
 	file := configFile
 	if file == "" {
 		return nil, errors.New("config file not specified")
